@@ -1,0 +1,31 @@
+name: Redactor IA Automatico
+
+on:
+  workflow_dispatch: 
+
+jobs:
+  generar_borrador:
+    runs-on: ubuntu-latest
+    
+    steps:
+      - name: Descargar mi código
+        uses: actions/checkout@v4
+
+      - name: Instalar Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.11' 
+
+      - name: Instalar mis librerías
+        run: pip install -r requirements.txt
+
+      - name: Encender el Motor (Ejecutar main.py)
+        env:
+          GEMINI_API_KEY: ${{ secrets.GEMINI_API_KEY }}
+        run: python main.py
+
+      - name: Guardar el borrador generado
+        uses: actions/upload-artifact@v4
+        with:
+          name: Borradores-Boletin
+          path: drafts/
