@@ -1,1 +1,1 @@
-https://claude.com/resources/articles/claude-duet
+https://openai.com/index/securing-our-frontier-model-training-environment/
